@@ -2,10 +2,9 @@ package classes;
 
 public class DocumentProcessor {
 
-    private static final PorterStemmer stemmer;
-
-    static {
-        stemmer = new PorterStemmer();
+    private final PorterStemmer stemmer;
+    {
+        stemmer = PorterStemmer.getInstance();
     }
 
     private String data;
@@ -18,6 +17,12 @@ public class DocumentProcessor {
         if (data.iterator().hasNext()) {
             this.data = String.join(" ", data);
         }
+    }
+
+    public String[] getNormalizedWords() {
+        toLowerCase();
+        removeSigns();
+        return toStemmedSplit();
     }
 
     private void toLowerCase() {
@@ -39,9 +44,4 @@ public class DocumentProcessor {
         return dataSplit;
     }
 
-    public String[] getNormalizedWords() {
-        toLowerCase();
-        removeSigns();
-        return toStemmedSplit();
-    }
 }

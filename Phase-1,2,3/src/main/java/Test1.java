@@ -1,16 +1,15 @@
-import controller.AppController;
-import exception.BaseDirectoryInvalidException;
-import exception.SearchException;
-import model.Document;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import classes.DocumentScanner;
 import classes.InvertedIndex;
 import classes.PorterStemmer;
 import classes.SearchEngine;
+import controller.AppController;
+import controller.AppRunner;
+import exception.BaseDirectoryInvalidException;
+import exception.SearchException;
+import model.Document;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +21,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 public class Test1 {
     AppController appController = mock(AppController.class);
@@ -98,7 +98,7 @@ public class Test1 {
                 "                 day candidate traininFull Celebration:     " +
                 "   All convention activities, Sept. 2-5, $30Late Riser        " +
                 "       No breakfasts, everything else Sept. 2-5, $25Thrift                   No breakfasts or banquet, $15Issues Focus             Karl Hess Institute, $12Basic                    Convention packet, souvenirs, two Karl Hes                         Institute speakerFree                     Political Expo, Access to convention hall                         Keynote Address, Joyful Noise, Freedom Roc                         '93, three free outreach speakersPLEASE NOTE--       PRICES INCREASE MAY 1, 199--       Special student prices are available to anyone under 25 years o         age or who is enrolled in a college or university--       Six and seven month payment plans are available which ca         include housing (if requested)--       To add the three day candidate training to any package belo         (except \"Total Event\"), add $150 to the price--       All prices are in U.S. dollars--       Advertising is available in the convention program; exhibits an         sponsorships are available for the Political Expo.  Free Politica         Expo admission and MGP promotions will draw visitors from th         surrounding community (one million people live within a 3         minute drive of the Expo)--       If your special interest group, organization, committee, or caus         would like to schedule space for a presentation, contact us--       MGP conducts a drawing each month and gives away FRE         hotel nights.  The sooner you register, the more chances you hav         to win--       Roommate match service available upon requestOTHER EVENTS\"Anti-Federalist Two\"    MGP sponsored writing contest.  Jun                         submission deadline.  Contact MGP fo                         prospectus\"The LibertarianGames\"                   Friendly competition -- marksmanship, compute                         programming, chess, maybe moreLibertarians for Gay Lesbian Concerns         Business meeting, social night, sponsored b                         LGLC???                      YOUR EVENT CAN BE LISTED HERE.  Contac                         MGP for details                         ATTENTION COLLEGE STUDENTSSpecial discounts are available for college and high school students.  Wwill work on casual housing opportunities for the \"Poverty Caucus\".College Libertarians will meet at Celebrate Liberty! and discuss the futurof their movement on campuses.  Contact MGP for more details\\t\\t\\t   LIST OF SPEAKER\\t\\t       (as of March 14, 1993)Dean Ahmad\\t\\tJim Hudler\\t\\tSheldon RichmaKaren Allard\\t\\tJeff Hummel\\t\\tKathleen RichmaRick Arnold\\t\\tAlexander Joseph\\tDan RosenthaDr. George Ayittey\\tFrances Kendall\\t\\tDr. Mary RuwarAlan Boch\\t\\tMartin Luther King\\tDagny SharoRichard Boddie\\t\\tMe-Me King\\t\\tJane ShaGus Dizerega\\t\\tHenry Lamb\\t\\tSandy ShaLarry Dodge\\t\\tAmy Lassen\\t\\tL. Neil SmitDr. Richard Ebeling\\tScott Lieberman\\t\\tEric SterlinDon Ernsberger\\t\\tDr. Nancy Lord\\t\\tDr. Richard StrouBill Evers\\t\\tRussell Means\\t\\tDr. Thomas SzasBonnie Flickenger\\tVince Miller\\t\\tMichael TanneJohn Fund\\t\\tMaury Modine\\t\\tSojourner TrutDoris Gordon\\t\\tDavid Nolan\\t\\tYuri TuviLeon Hadar\\t\\tRandall O'Toole\\t\\tBob WaldroPatrick Henry\\t\\tJames Ostrowski\\t\\tTerree WasleKarl Hess\\t\\tDirk Pearson\\t\\tPerry WilliDr. Karl Hess Jr.\\tBob Poole\\t\\tRichard WingeJacob Honrberger\\tCarole Ann Rand\\t\\tJarret Wollstei\\t\\t\\t\\t\\t\\tBrigham Youn\\t\\t  UPCOMING CONVENTION DEVELOPMENTSOn May 1st, prices increase for convention packages, candidate trainingand exhibits/advertisingNew prices for convention packages will beTotal Event:             $45Full Celebration:        $35Late Riser:              $27Thrift:                  $17Issues Focus:            $15Basic:                   $3Free:                    $These prices good through July 2, 1993                          BACK BY POPULAR DEMAND!                        ANNOUNCING THE DELEGATE DEALS                            Available May 1, 199I:       Business Focus:  All convention activities except Karl Hes         Institute -- $27II:      Delegate Celebration, includes a complete set of Karl Hes         Institute audio tapes instead of institute tickets -- $35                       STANDING ORDER OF BUSINESS FO                       A LIBERTARIAN PARTY CONVENTIO     1. Call to orde     2. Credentials Committee repor     3. Adoption of agend     4. Treasurer's repor     5. Bylaws and Rules Committee report (Non-nominating convention        only     6. Platform Committee report (At non-Presidential nominatin        conventions only deletions may be considered.     7. Nomination of Party candidates for President an        Vice-President (in appropriate years     8. Election of Party Officers and at-large member        of the National Committe     9. Election of Judicial Committe     10. Resolution     11. Other busines                         FOR QUESTIONS OR COMMENTS                             GRUMBLES OR GRINS                          SUGGESTIONS OR CRITICISM                                     AN                                TO REGISTER                                  CONTACT                       MORNING GLORY PRODUCTIONS, INC                               P.O. Box 52617                          Salt Lake City, UT  8415                                801.582.331                E-mail: Bob.Waldrop@f418.n104.z1.fidonet.or           Make Checks Payable to Morning Glory Productions, Inc--\\t\\t      Don't blame me; I voted LibertarianDisclaimer: I speak for myself, except as noted; Copyright 1993 Rich ThomsoUUCP: ...!uunet!dsd.es.com!rthomson\\t\\t\\tRich ThomsoInternet: rthomson@dsd.es.com\\tIRC: _Rich_\\t\\tPEXt Programme";
-        DocumentScanner documentScanner = new DocumentScanner(Path.of("SampleEnglishData"));
+        DocumentScanner documentScanner = DocumentScanner.getInstance(Path.of(("./src/SampleEnglishData")));
         Set<Path> documents = documentScanner.getAllFilesInPath();
         Path wantedDocument = null;
         for (Path document : documents)
@@ -114,16 +114,15 @@ public class Test1 {
         Document document = new Document(Path.of("SampleEnglishData/58049"));
         Document document1 = new Document(Path.of("SampleEnglishData/58057"));
         Assertions.assertNotNull(document.getDocumentPath());
-        Assertions.assertNotNull(document1.getId());
-        Assertions.assertFalse(document.equals(new Object()));
-        Assertions.assertFalse(document.equals(document1));
+        Assertions.assertNotEquals(document, new Object());
+        Assertions.assertNotEquals(document, document1);
         Assertions.assertEquals(-1, document.compareTo(document1));
     }
 
     @Test
     public void exceptionTester() {
         try {
-            new DocumentScanner(Path.of("adasddsadfiladsf"));
+            DocumentScanner.getInstance(Path.of("adasddsadfiladsf"));
         } catch (BaseDirectoryInvalidException | IOException exception) {
             exception.printStackTrace();
         }
@@ -157,7 +156,7 @@ public class Test1 {
         Set<Document> results = appController.search("old friend +problem +doctor -remember");
         ArrayList<String> list = new ArrayList<>();
         for (Document document : results) {
-            list.add(document.getDocumentPath().toString().replaceFirst("SampleEnglishData/", ""));
+            list.add(document.getDocumentPath().toString().replaceFirst("./src/SampleEnglishData", ""));
         }
         Assertions.assertEquals(6, results.size(), "size of result is not equal with actual size");
         Assertions.assertFalse(results.contains("59652"), "search engine is wrong");
@@ -170,7 +169,7 @@ public class Test1 {
         final String test2 = "Buddhism islamic republic";
         final String test3 = "           anti socialized";
         final String test4 = "HelLo HOWD ";
-        PorterStemmer method = new PorterStemmer();
+        PorterStemmer method = PorterStemmer.getInstance();
         Assertions.assertEquals((String) method.stemWord(test1).trim(), "national socialize step");
         Assertions.assertEquals((String) method.stemWord(test2).trim(), "buddhism islamic republ");
         Assertions.assertEquals((String) method.stemWord(test3).trim(), "anti soci");
@@ -179,13 +178,13 @@ public class Test1 {
 
     @Test
     public void printTester() throws BaseDirectoryInvalidException, IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, SearchException {
-        Main main = new Main();
+        AppRunner appRunner = AppRunner.getInstance();
         appController.init();
-        Method method = main.getClass().getDeclaredMethod("searchAndDisplay", AppController.class, String.class);
-        method.setAccessible(true);
-        method.invoke(null, appController, "hello");
+//        Method method = appRunner.getClass().getDeclaredMethod("searchAndDisplay", AppController.class, String.class);
+//        method.setAccessible(true);
+//        method.invoke(null,appController ,"hello");
         Set<Document> results = appController.search("hello");
-        Mockito.verify(appController, times(1)).printResults(results);
+        appController.printResults(results);
     }
 
     @Test
@@ -204,13 +203,31 @@ public class Test1 {
 
     @Test
     public void printTester3() {
-        SearchEngine searchEngine = new SearchEngine(new InvertedIndex());
+        SearchEngine searchEngine = SearchEngine.getInstance(InvertedIndex.getInstance());
         try {
             searchEngine.search(null);
         } catch (SearchException e) {
             e.getMessage();
         }
     }
+
+    @Test
+    public void printTester4() throws SearchException {
+        AppRunner appRunner = AppRunner.getInstance();
+        appRunner.searchAndDisplay(appController, "+illness +disease -cough");
+        Set<Document> results = appController.search("+illness +disease -cough");
+        Mockito.verify(appController, times(1)).printResults(results);
+    }
+
+//    @Test
+//    public void printTester5() throws SearchException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//        SearchEngine searchEngine = SearchEngine.getInstance(InvertedIndex.getInstance());
+//        Method method = searchEngine.getClass().getDeclaredMethod("getJointWordsIndexSet", String[].class);
+//        String[] results = {"salam" , "khoobi", "majid"};
+//        method.setAccessible(true);
+//        Object riz = method.invoke(String[].class, results);
+//        Assertions.assertNotNull(riz);
+//    }
 }
 
 class Test2 {
@@ -226,12 +243,19 @@ class Test2 {
         System.setIn(testIn);
     }
 
+    private OutputStream provideOutput() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+        return baos;
+    }
+
 
     @Test
     public void testCase1() throws SearchException {
         final String testString = "get help +illness +disease -cough";
         provideInput(testString);
-        Main.searchAndDisplay(appController , testString);
+        AppRunner.getInstance().searchAndDisplay(appController, testString);
         final String answer = "58090\n" +
                 "58568\n" +
                 "58953\n" +
@@ -272,9 +296,84 @@ class Test2 {
     public void testCase2() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         final String testString = "*exit";
         provideInput(testString);
-        Main main =new Main();
-        Method method = main.getClass().getDeclaredMethod("getInput", Scanner.class);
-        String str = (String) method.invoke(null , new Scanner(System.in));
+        AppRunner appRunner = AppRunner.getInstance();
+        Method method = appRunner.getClass().getDeclaredMethod("getInput", Scanner.class);
+        String str = (String) method.invoke(appRunner, new Scanner(System.in));
         Assertions.assertNull(str);
+    }
+
+    @Test
+    public void testCase3() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SearchException, BaseDirectoryInvalidException, IOException {
+        final String testString = "get help +illness +disease -cough";
+        OutputStream baos = provideOutput();
+        appController.init();
+        String expected = "59199\n" +
+                "59548\n" +
+                "58090\n" +
+                "58568\n" +
+                "58953\n" +
+                "59286\n" +
+                "59459\n" +
+                "59462\n" +
+                "59165\n" +
+                "59234\n" +
+                "57110\n" +
+                "58155\n" +
+                "59123\n" +
+                "59255\n" +
+                "59189\n" +
+                "59181\n" +
+                "59637\n" +
+                "58123\n" +
+                "58109\n" +
+                "59456\n" +
+                "59203\n" +
+                "59629\n" +
+                "59632\n" +
+                "59488\n" +
+                "59040\n" +
+                "59183\n" +
+                "59554\n" +
+                "59284\n" +
+                "59435\n" +
+                "58152\n" +
+                "58578\n" +
+                "58820\n" +
+                "59199\n" +
+                "59548\n" +
+                "58090\n" +
+                "58568\n" +
+                "58953\n" +
+                "59286\n" +
+                "59459\n" +
+                "59462\n" +
+                "59165\n" +
+                "59234\n" +
+                "57110\n" +
+                "58155\n" +
+                "59123\n" +
+                "59255\n" +
+                "59189\n" +
+                "59181\n" +
+                "59637\n" +
+                "58123\n" +
+                "58109\n" +
+                "59456\n" +
+                "59203\n" +
+                "59629\n" +
+                "59632\n" +
+                "59488\n" +
+                "59040\n" +
+                "59183\n" +
+                "59554\n" +
+                "59284\n" +
+                "59435\n" +
+                "58152\n" +
+                "58578\n" +
+                "58820";
+        Set<Document> results = appController.search(testString);
+        appController.printResults(results);
+        String actual = baos.toString();
+        Assertions.assertNotNull(actual);
     }
 }

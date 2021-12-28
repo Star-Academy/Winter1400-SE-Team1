@@ -1,8 +1,9 @@
 package model;
 
-import lombok.Getter;
 import classes.DocumentProcessor;
+import lombok.Getter;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -11,18 +12,24 @@ import java.util.regex.Pattern;
 @Getter
 public class SearchQuery {
 
-    private static final String REQUIRED_WORDS_REGEX = "(?<=\\s|^)([^+-]\\S+)(?=\\s|$)";
-    private static final String OPTIONAL_WORDS_REGEX = "(?<=\\s|^)\\+(\\S+)(?=\\s|$)";
-    private static final String BANNED_WORDS_REGEX = "(?<=\\s|^)-(\\S+)(?=\\s|$)";
-
+    private static SearchQuery instance;
+    private final String REQUIRED_WORDS_REGEX = "(?<=\\s|^)([^+-]\\S+)(?=\\s|$)";
+    private final String OPTIONAL_WORDS_REGEX = "(?<=\\s|^)\\+(\\S+)(?=\\s|$)";
+    private final String BANNED_WORDS_REGEX = "(?<=\\s|^)-(\\S+)(?=\\s|$)";
     private final String[] requiredWords;
     private final String[] optionalWords;
     private final String[] bannedWords;
-
-    public SearchQuery(String input) {
+    private SearchQuery(String input) {
         this.optionalWords = getStemmedWordsFromInputByRegex(input, OPTIONAL_WORDS_REGEX);
         this.bannedWords = getStemmedWordsFromInputByRegex(input, BANNED_WORDS_REGEX);
         this.requiredWords = getStemmedWordsFromInputByRegex(input, REQUIRED_WORDS_REGEX);
+    }
+
+    public static SearchQuery getInstance(String input) {
+        if (instance == null) {
+            instance = new SearchQuery(input);
+        }
+        return instance;
     }
 
     private String[] getStemmedWordsFromInputByRegex(String input, String pattern) {

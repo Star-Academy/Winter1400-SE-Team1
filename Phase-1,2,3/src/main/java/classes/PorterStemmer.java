@@ -4,6 +4,19 @@ import java.util.Locale;
 
 public class PorterStemmer {
 
+    private static PorterStemmer instance;
+
+    private PorterStemmer() {
+    }
+
+    //method to return instance of class
+    public static PorterStemmer getInstance() {
+        if (instance == null) {
+            instance = new PorterStemmer();
+        }
+        return instance;
+    }
+
     public String stemWord(String word) {
         String stem = word.toLowerCase(Locale.getDefault());
         if (stem.length() < 3) return stem;
@@ -40,27 +53,39 @@ public class PorterStemmer {
 
     private String stemStep1b(String input) {
         if (input.endsWith("eed")) {
-            String stem = removeLastCharacters(input, 1);
-            String letterTypes = getLetterTypes(stem);
-            int m = getM(letterTypes);
-            if (m > 0) return stem;
-            return input;
+            return stemStep1b_eed(input);
         }
         if (input.endsWith("ed")) {
-            String stem = removeLastCharacters(input, 2);
-            String letterTypes = getLetterTypes(stem);
-            if (letterTypes.contains("v")) {
-                return step1b2(stem);
-            }
-            return input;
+            return stemStep1b_ed(input);
         }
         if (input.endsWith("ing")) {
-            String stem = removeLastCharacters(input, 3);
-            String letterTypes = getLetterTypes(stem);
-            if (letterTypes.contains("v")) {
-                return step1b2(stem);
-            }
-            return input;
+            return stemStep1b_ing(input);
+        }
+        return input;
+    }
+
+    private String stemStep1b_eed(String input) {
+        String stem = removeLastCharacters(input, 1);
+        String letterTypes = getLetterTypes(stem);
+        int m = getM(letterTypes);
+        if (m > 0) return stem;
+        return input;
+    }
+
+    private String stemStep1b_ed(String input) {
+        String stem = removeLastCharacters(input, 2);
+        String letterTypes = getLetterTypes(stem);
+        if (letterTypes.contains("v")) {
+            return step1b2(stem);
+        }
+        return input;
+    }
+
+    private String stemStep1b_ing(String input) {
+        String stem = removeLastCharacters(input, 3);
+        String letterTypes = getLetterTypes(stem);
+        if (letterTypes.contains("v")) {
+            return step1b2(stem);
         }
         return input;
     }
@@ -73,17 +98,21 @@ public class PorterStemmer {
         } else if (input.endsWith("iz")) {
             return input + "e";
         } else {
-            char lastDoubleConsonant = getLastDoubleConsonant(input);
-            if (lastDoubleConsonant != 0 && lastDoubleConsonant != 'l' && lastDoubleConsonant != 's' && lastDoubleConsonant != 'z') {
-                return removeLastCharacters(input, 1);
-            } else {
-                String letterTypes = getLetterTypes(input);
-                int m = getM(letterTypes);
-                if (m == 1 && isStarO(input)) {
-                    return input + "e";
-                }
+            return step1b2_else(input);
+        }
+    }
 
+    private String step1b2_else(String input) {
+        char lastDoubleConsonant = getLastDoubleConsonant(input);
+        if (lastDoubleConsonant != 0 && lastDoubleConsonant != 'l' && lastDoubleConsonant != 's' && lastDoubleConsonant != 'z') {
+            return removeLastCharacters(input, 1);
+        } else {
+            String letterTypes = getLetterTypes(input);
+            int m = getM(letterTypes);
+            if (m == 1 && isStarO(input)) {
+                return input + "e";
             }
+
         }
         return input;
     }
@@ -98,10 +127,10 @@ public class PorterStemmer {
     }
 
     private String stemStep2(String input) {
-        String[] s1 = new String[]{"ational", "tional", "enci", "anci", "izer", "bli", "alli", "entli", "eli", "ousli",
+        final String[] s1 = new String[]{"ational", "tional", "enci", "anci", "izer", "bli", "alli", "entli", "eli", "ousli",
                 "ization", "ation", "ator", "alism", "iveness", "fulness", "ousness", "aliti", "iviti", "biliti", "logi",
         };
-        String[] s2 = new String[]{
+        final String[] s2 = new String[]{
                 "ate", "tion", "ence", "ance", "ize", "ble", "al", "ent", "e", "ous", "ize", "ate", "ate", "al", "ive",
                 "ful", "ous", "al", "ive", "ble", "log"
         };
@@ -122,14 +151,14 @@ public class PorterStemmer {
     }
 
     private String stemStep3(String input) {
-        String[] s1 = new String[]{"icate", "ative", "alize", "iciti", "ical", "ful", "ness"};
-        String[] s2 = new String[]{"ic", "", "al", "ic", "ic", "", ""};
+        final String[] s1 = new String[]{"icate", "ative", "alize", "iciti", "ical", "ful", "ness"};
+        final String[] s2 = new String[]{"ic", "", "al", "ic", "ic", "", ""};
         return replaceSuffix(input, s1, s2);
 
     }
 
     private String stemStep4(String input) {
-        String[] suffixes = new String[]{
+        final String[] suffixes = new String[]{
                 "al", "ance", "ence", "er", "ic", "able", "ible", "ant", "ement", "ment", "ent", "ion", "ou", "ism",
                 "ate", "iti", "ous", "ive", "ize"};
         for (String suffix : suffixes) {
