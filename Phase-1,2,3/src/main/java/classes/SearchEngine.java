@@ -7,12 +7,21 @@ import model.SearchQuery;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SearchEngine {
+public class SearchEngine implements Searcher {
 
+    private static SearchEngine instance;
     private final InvertedIndex index;
 
-    public SearchEngine(InvertedIndex index) {
+    private SearchEngine(InvertedIndex index) {
         this.index = index;
+    }
+
+    public static SearchEngine getInstance(InvertedIndex index) {
+        if (instance == null) {
+            // if instance is null, initialize
+            instance = new SearchEngine(index);
+        }
+        return instance;
     }
 
     public Set<Document> search(SearchQuery query) throws SearchException {

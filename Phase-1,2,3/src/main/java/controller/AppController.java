@@ -1,11 +1,11 @@
 package controller;
 
+import classes.DocumentScanner;
+import classes.SearchEngine;
 import exception.BaseDirectoryInvalidException;
 import exception.SearchException;
 import model.Document;
 import model.SearchQuery;
-import classes.DocumentScanner;
-import classes.SearchEngine;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,14 +13,14 @@ import java.util.Set;
 
 public class AppController {
 
-    private static final String BASE_DIRECTORY_URI = "SampleEnglishData";
+    final String BASE_DIRECTORY_URL = "./src/SampleEnglishData";
 
-    private static SearchEngine engine;
+    private SearchEngine engine;
 
     public void init() throws BaseDirectoryInvalidException, IOException {
-        Path baseDirectory = Path.of(BASE_DIRECTORY_URI);
-        DocumentScanner documentScanner = new DocumentScanner(baseDirectory);
-        engine = new SearchEngine(documentScanner.getIndex());
+        Path baseDirectory = Path.of(BASE_DIRECTORY_URL);
+        DocumentScanner documentScanner = DocumentScanner.getInstance(baseDirectory);
+        engine = SearchEngine.getInstance(documentScanner.getIndex());
     }
 
     public Set<Document> search(String input) throws SearchException {
@@ -31,7 +31,7 @@ public class AppController {
     }
 
     private Set<Document> getInputResults(String input) throws SearchException {
-        SearchQuery query = new SearchQuery(input);
+        SearchQuery query = SearchQuery.getInstance(input);
         return engine.search(query);
     }
 
