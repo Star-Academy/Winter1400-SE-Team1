@@ -1,0 +1,16 @@
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents.deps.json
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents.runtimeconfig.json
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents.runtimeconfig.dev.json
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents.dll
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/ref/FindRankedStudents.dll
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/bin/Debug/net5.0/FindRankedStudents.pdb
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.csproj.AssemblyReference.cache
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.GeneratedMSBuildEditorConfig.editorconfig
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.AssemblyInfoInputs.cache
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.AssemblyInfo.cs
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.csproj.CoreCompileInputs.cache
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.dll
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/ref/FindRankedStudents.dll
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.pdb
+/media/black-titan/ddc7c516-e19c-49a2-ad5b-bfd65828f03d/Projects/CodeStar/Phase4/Phase4/FindRankedStudents/obj/Debug/net5.0/FindRankedStudents.genruntimeconfig.cache
